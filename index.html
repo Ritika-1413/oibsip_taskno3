@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Temperature Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("images/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .container {
+        width: 300px;
+        margin: 50px auto;
+    }
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #020005;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Temperature Converter</h2>
+    <input type="number" id="inputTemp" placeholder="Enter temperature">
+    <select id="inputUnit">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+    </select>
+    <button onclick="convertTemperature()">Convert</button>
+    <p id="result"></p>
+</div>
+<script>
+    function convertTemperature() {
+        var inputTemp = parseFloat(document.getElementById("inputTemp").value);
+        var inputUnit = document.getElementById("inputUnit").value;
+        var result = document.getElementById("result");
+        
+        if (inputUnit === "celsius") {
+            result.innerText = inputTemp + "°C = " + (inputTemp * 9/5 + 32).toFixed(2) + "°F | " + (inputTemp + 273.15).toFixed(2) + "K";
+        } else if (inputUnit === "fahrenheit") {
+            result.innerText = inputTemp + "°F = " + ((inputTemp - 32) * 5/9).toFixed(2) + "°C | " + ((inputTemp - 32) * 5/9 + 273.15).toFixed(2) + "K";
+        } else if (inputUnit === "kelvin") {
+            result.innerText = inputTemp + "K = " + (inputTemp - 273.15).toFixed(2) + "°C | " + ((inputTemp - 273.15) * 9/5 + 32).toFixed(2) + "°F";
+        }
+    }
+</script>
+</body>
+</html>
